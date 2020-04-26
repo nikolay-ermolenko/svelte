@@ -1,0 +1,12 @@
+{
+  "version": 3,
+  "file": "bundle.css",
+  "sources": [
+    "..\\..\\App.svelte"
+  ],
+  "sourcesContent": [
+    "<script>\r\n  export let name;\r\n</script>\r\n\r\n<div>\r\n    <h1>{name}</h1>\r\n</div>\r\n\r\n<style>\r\n\th1 {\r\n    font-family: -apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Oxygen-Sans,Ubuntu,Cantarell,\"Helvetica Neue\",sans-serif;\r\n\t\tcolor: purple;\r\n\t}\r\n</style>"
+  ],
+  "names": [],
+  "mappings": "AASC,EAAE,cAAC,CAAC,AACD,WAAW,CAAE,aAAa,CAAC,kBAAkB,CAAC,UAAU,CAAC,MAAM,CAAC,WAAW,CAAC,MAAM,CAAC,SAAS,CAAC,gBAAgB,CAAC,UAAU,CAC1H,KAAK,CAAE,MAAM,AACd,CAAC"
+}
