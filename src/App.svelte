@@ -1,15 +1,20 @@
 <script>
-  export let name;
+  import Router from 'svelte-spa-router';
+
+  export let version;
 </script>
 
 <div>
-    <h1>{name}</h1>
-    <p>...</p>
+    <h1>Hello svelte</h1>
+    <p class="version">svelte v{version}</p>
 </div>
 
 <style>
-	h1 {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-		color: purple;
-	}
+  h1 {
+    color: purple;
+  }
+  .version {
+    font-size: .8em;
+    color: #666;
+  }
 </style>
