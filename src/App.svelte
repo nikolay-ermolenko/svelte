@@ -4,6 +4,7 @@
 
 <div>
     <h1>{name}</h1>
+    <p>...</p>
 </div>
 
 <style>
