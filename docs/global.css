@@ -1,7 +1,24 @@
 html {
-    line-height: 1.5;
-	font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-	font-size: 1em;
-    font-weight: normal;
-    color: #444;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    overflow: hidden;
+}
+
+
+html {
+    --text-regular-color: #444;
+    --shadow-color: rgba(0,0,0,.3);
+    --viewport-background-color: #f3f3f3;
+    --container-background-color: #fefefe;
 }

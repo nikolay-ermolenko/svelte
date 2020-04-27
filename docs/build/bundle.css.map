@@ -2,11 +2,13 @@
   "version": 3,
   "file": "bundle.css",
   "sources": [
-    "..\\..\\App.svelte"
+    "..\\..\\App.svelte",
+    "..\\..\\Viewport.svelte"
   ],
   "sourcesContent": [
-    "<script>\r\n  import Router from 'svelte-spa-router';\r\n\r\n  export let version;\r\n</script>\r\n\r\n<div>\r\n    <h1>Hello svelte</h1>\r\n    <p class=\"version\">svelte v{version}</p>\r\n</div>\r\n\r\n<style>\r\n  h1 {\r\n    color: purple;\r\n  }\r\n  .version {\r\n    font-size: .8em;\r\n    color: #666;\r\n  }\r\n</style>"
+    "<script>\r\n  import Router from 'svelte-spa-router';\r\n  import Viewport from './components/Viewport.svelte';\r\n\r\n  export let version;\r\n\r\n  $: versionText = `svelte v${version}`;\r\n</script>\r\n\r\n<Viewport>\r\n  <div class=\"sv-layout-center\">\r\n    <h1>Hello svelte</h1>\r\n    <p class=\"version\">{versionText}</p>\r\n  </div>\r\n</Viewport>\r\n\r\n\r\n\r\n<style>\r\n.sv-layout-center{\r\n  width: 60%;\r\n  height: 60%;\r\n  max-width: 20rem;\r\n  margin: auto;\r\n  padding: 1rem;\r\n  overflow: auto;\r\n  box-shadow: 0 0px 7px 0px var(--shadow-color), 0 14px 32px -18px var(--shadow-color);\r\n  background-color: var(--container-background-color);\r\n\r\n}\r\nh1 {\r\n  color: purple;\r\n}\r\n  .version {\r\n    font-size: .8rem;\r\n    color: var(--text-regular-color);\r\n  }\r\n</style>",
+    "<div class=\"sv-viewport\">\r\n    <slot />\r\n</div>\r\n\r\n\r\n<style>\r\n.sv-viewport {\r\n    background-color: var(--viewport-background-color);\r\n    display: flex;\r\n    flex-direction: column;\r\n    width: 100%;\r\n    height: 100%;\r\n    overflow: hidden;\r\n}\r\n</style>"
   ],
   "names": [],
-  "mappings": "AAYE,EAAE,cAAC,CAAC,AACF,KAAK,CAAE,MAAM,AACf,CAAC,AACD,QAAQ,cAAC,CAAC,AACR,SAAS,CAAE,IAAI,CACf,KAAK,CAAE,IAAI,AACb,CAAC"
+  "mappings": "AAmBA,+BAAiB,CAAC,AAChB,KAAK,CAAE,GAAG,CACV,MAAM,CAAE,GAAG,CACX,SAAS,CAAE,KAAK,CAChB,MAAM,CAAE,IAAI,CACZ,OAAO,CAAE,IAAI,CACb,QAAQ,CAAE,IAAI,CACd,UAAU,CAAE,CAAC,CAAC,GAAG,CAAC,GAAG,CAAC,GAAG,CAAC,IAAI,cAAc,CAAC,CAAC,CAAC,CAAC,CAAC,IAAI,CAAC,IAAI,CAAC,KAAK,CAAC,IAAI,cAAc,CAAC,CACpF,gBAAgB,CAAE,IAAI,4BAA4B,CAAC,AAErD,CAAC,AACD,EAAE,cAAC,CAAC,AACF,KAAK,CAAE,MAAM,AACf,CAAC,AACC,QAAQ,cAAC,CAAC,AACR,SAAS,CAAE,KAAK,CAChB,KAAK,CAAE,IAAI,oBAAoB,CAAC,AAClC,CAAC;AC9BH,YAAY,eAAC,CAAC,AACV,gBAAgB,CAAE,IAAI,2BAA2B,CAAC,CAClD,OAAO,CAAE,IAAI,CACb,cAAc,CAAE,MAAM,CACtB,KAAK,CAAE,IAAI,CACX,MAAM,CAAE,IAAI,CACZ,QAAQ,CAAE,MAAM,AACpB,CAAC"
 }

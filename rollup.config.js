@@ -1,3 +1,4 @@
+import babel from 'rollup-plugin-babel';
 import svelte from 'rollup-plugin-svelte';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
@@ -22,12 +23,18 @@ export default {
       }
     }),
     resolve({
+      jsnext: true,
       browser: true,
       dedupe: importee =>
         importee === 'svelte' ||
         importee.startsWith('svelte/')
     }),
-    commonjs(),
+    commonjs({
+      sourceMap: false
+    }),
+    babel({
+      exclude: 'node_modules/**',
+    }),
     !production && serve(),
     !production && livereload('docs'),
     production && terser()
