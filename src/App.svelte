@@ -1,6 +1,8 @@
 <script>
   import Router from 'svelte-spa-router';
   import Viewport from './components/Viewport.svelte';
+  import Container from './components/Container.svelte';
+  import Header from './components/Header.svelte';
 
   export let version;
 
@@ -8,26 +10,15 @@
 </script>
 
 <Viewport>
-  <div class="sv-layout-center">
-    <h1>Hello svelte</h1>
-    <p class="version">{versionText}</p>
-  </div>
+  <Container header="Hello Svelte :: {version} :: qweertyyiuo">
+    <div slot="body">
+      <h1>Hello svelte</h1>
+      <p class="version">{versionText}</p>
+    </div>
+  </Container>
 </Viewport>
 
-
-
 <style>
-.sv-layout-center{
-  width: 60%;
-  height: 60%;
-  max-width: 20rem;
-  margin: auto;
-  padding: 1rem;
-  overflow: auto;
-  box-shadow: 0 0px 7px 0px var(--shadow-color), 0 14px 32px -18px var(--shadow-color);
-  background-color: var(--container-background-color);
-
-}
 h1 {
   color: purple;
 }

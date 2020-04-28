@@ -21,4 +21,7 @@ html {
     --shadow-color: rgba(0,0,0,.3);
     --viewport-background-color: #f3f3f3;
     --container-background-color: #fefefe;
+
+    --header-background-color: #679;    
+    --header-text-color: #eee;
 }
