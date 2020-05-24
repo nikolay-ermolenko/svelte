@@ -26,3 +26,7 @@ html {
     --header-background-color: #679;    
     --header-text-color: #eee;
 }
+
+.sv-ripple-el {
+    position: relative;
+}
