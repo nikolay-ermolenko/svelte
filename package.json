@@ -14,12 +14,15 @@
         "@rollup/plugin-node-resolve": "^7.1.3",
         "rollup-plugin-babel": "^4.4.0",
         "rollup-plugin-babel-minify": "^10.0.0",
+        "rollup-plugin-progress": "^1.1.1",
         "rollup-plugin-livereload": "^1.2.0",
         "rollup-plugin-svelte": "^5.2.1",
         "rollup-plugin-terser": "^5.3.0",
+        "rollup-plugin-filesize": "^8.0.2",
         "svelte": "^3.21.0"
     },
     "dependencies": {
+        "overlayscrollbars": "^1.12.0",
         "sirv-cli": "^0.4.5",
         "svelte-spa-router": "^2.1.0",
         "qs": "^6.9.3"

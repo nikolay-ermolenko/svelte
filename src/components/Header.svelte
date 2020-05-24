@@ -1,4 +1,13 @@
-<div class="sv-header">
+<script>
+  import Ripple from './Ripple.svelte';
+
+  export let ripple = true;
+</script>
+
+<div class="sv-header {ripple ? 'sv-ripple-el' : ''}">
+  {#if ripple}
+    <Ripple />
+  {/if}
   <slot />
 </div>
 

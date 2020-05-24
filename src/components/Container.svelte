@@ -1,30 +1,32 @@
 <script>
+  import Ripple from './Ripple.svelte';
   import Header from './Header.svelte';
-  export let header;
+
+  export let header = '';
+  export let ripple = true;
 </script>
 
-<div class="sv-container sv-layout-center">
+
+
+<div class="sv-container">
   <slot name="header">
     {#if header}
       <Header>{header}</Header>
     {/if}
   </slot>
-  <div class="sv-container-body">
+  <div class="sv-container-body {ripple ? 'sv-ripple-el' : ''}">
+    {#if ripple}
+      <Ripple />
+    {/if}
     <slot name="body"></slot>
   </div>
 </div>
 
-
 <style>
-.sv-layout-center{
-  width: 60%;
-  height: 60%;
-  max-width: 40vmax;
-  max-height: 60vmin;
-  margin: auto;
-  
-}
+
 .sv-container {
+  width: 100%;
+  height: 100%;
   box-shadow: 0 0px 7px 0px var(--shadow-color), 0 14px 32px -18px var(--shadow-color);
   background-color: var(--container-background-color);
   display: flex;
