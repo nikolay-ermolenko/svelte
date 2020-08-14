@@ -15,7 +15,7 @@
 </script>
 
 <button class="sv-button {ripple ? 'sv-ripple-el' : ''}" {disabled} on:click|stopPropagation={handleClick}>
-  {#if ripple}
+  {#if !disabled && ripple}
     <Ripple />
   {/if}
   <div class="sv-button-content">{text}</div>
@@ -26,7 +26,7 @@
 .sv-button {
   border: none;
   white-space: nowrap;
-  background-color: transparent;
+  background-color: var(--button-regular-background-color);
   border-radius: 2px;
   outline: none;
   margin: .5rem;
