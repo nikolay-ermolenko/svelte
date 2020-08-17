@@ -1,5 +1,7 @@
 <script>
   let rippleCounter = [];
+  let lastTime = null;
+  let bufferMs = 1000;
 
   /**
    * 
@@ -14,22 +16,34 @@
     }
 
     const { top, left } = target.getBoundingClientRect();
-    const { color, width, height } = target.ownerDocument.defaultView.getComputedStyle(target.parentNode);
-    const bubbleDim = Math.max(parseInt(width), parseInt(height));
-
+    const { color, width, height, display } = target.ownerDocument.defaultView.getComputedStyle(target.parentNode);
+    const bubbleDim = display.indexOf('inline') > -1
+      ? Math.min(parseInt(width), parseInt(height)) * 3
+      : Math.max(parseInt(width), parseInt(height));
+    
     rippleCounter = rippleCounter.concat([{ 
-      left: pageX-left-0-bubbleDim*.5, 
-      top: pageY - top -0-bubbleDim*.5, 
+      left: pageX - left - bubbleDim * .5, 
+      top: pageY - top - bubbleDim * .5, 
       color, 
       bubbleDim
     }]);
-    setTimeout(() => (rippleCounter.shift(),rippleCounter = [].concat(rippleCounter)), 7000000);
+    lastTime = +new Date();
+
+    setTimeout(() => {
+      const date = +new Date();
+
+      if (date - lastTime > bufferMs) {
+        rippleCounter = [];
+      }
+    }, bufferMs * 1.1);
   }
 </script>
 
 <div class="sv-ripple" on:mousedown={onRippleMouseDown}>
   {#each rippleCounter as { color, left, top, bubbleDim }}
-    <div class="sv-ripple sv-ripple-bubble" style="background-color:{color};left:{left}px;top:{top}px;width:{bubbleDim}px;height:{bubbleDim}px;"></div>
+    <div class="sv-ripple sv-ripple-bubble" 
+         style="background-color:{color};left:{left}px;top:{top}px;width:{bubbleDim}px;height:{bubbleDim}px;">
+    </div>
   {/each}
 </div>
 
