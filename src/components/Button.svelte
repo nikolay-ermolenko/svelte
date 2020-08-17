@@ -5,6 +5,7 @@
   const dispatch = createEventDispatcher();
 
   export let ripple = true;
+  export let rippleCenter = false;
   export let disabled = false;
   export let text = '';
 
@@ -14,9 +15,9 @@
 
 </script>
 
-<button class="sv-button {ripple ? 'sv-ripple-el' : ''}" {disabled} on:click|stopPropagation={handleClick}>
+<button class="sv-button {!disabled && ripple ? 'sv-ripple-el' : ''}" {disabled} on:click|stopPropagation={handleClick}>
   {#if !disabled && ripple}
-    <Ripple />
+    <Ripple center="{rippleCenter}"/>
   {/if}
   <div class="sv-button-content">{text}</div>
 </button>
@@ -27,7 +28,7 @@
   border: none;
   white-space: nowrap;
   background-color: var(--button-regular-background-color);
-  border-radius: 2px;
+  border-radius: .15rem;
   outline: none;
   margin: .5rem;
   position: relative;

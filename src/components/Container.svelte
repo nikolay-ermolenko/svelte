@@ -3,7 +3,7 @@
   import Header from './Header.svelte';
 
   export let header = '';
-  export let ripple = true;
+  export let ripple = false;
 </script>
 
 

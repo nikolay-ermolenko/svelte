@@ -1,7 +1,7 @@
 <script>
   import Ripple from './Ripple.svelte';
 
-  export let ripple = true;
+  export let ripple = false;
 </script>
 
 <div class="sv-header {ripple ? 'sv-ripple-el' : ''}">
