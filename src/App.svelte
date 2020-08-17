@@ -8,7 +8,7 @@
 
   export let version;
 
-  let btnDisabled = true;
+  let btnDisabled = false;
 
   $: versionText = `svelte v${version}`;
 
@@ -28,8 +28,8 @@
         <h1>Hello svelte</h1>
         <p class="version">{versionText}</p>
         <Button text="check bill" on:click={(z,x,c)=>console.log(z.detail,x,c)} />
-        <Button text="check disabled" disabled={btnDisabled}/>
-        <Checkbox>Item 1</Checkbox>
+        <Button text="check disabled" disabled={btnDisabled} on:click={(z,x,c)=>btnDisabled=true} />
+        <Checkbox bind:value={btnDisabled}>Item 1</Checkbox>
         <Checkbox text="Item 2" labelBefore />
       </div>
     </Container>
