@@ -4,6 +4,7 @@
   import Container from './components/Container.svelte';
   import Header from './components/Header.svelte';
   import Button from './components/Button.svelte';
+  import Checkbox from './components/Checkbox.svelte';
 
   export let version;
 
@@ -20,7 +21,7 @@
       <div slot="header">
         <Header>
           <span>{versionText}</span>
-          <Button text="info"  />
+          <Button text="info" rippleCenter />
         </Header>      
       </div>
       <div slot="body">
@@ -28,6 +29,8 @@
         <p class="version">{versionText}</p>
         <Button text="check bill" on:click={(z,x,c)=>console.log(z.detail,x,c)} />
         <Button text="check disabled" disabled={btnDisabled}/>
+        <Checkbox>Item 1</Checkbox>
+        <Checkbox text="Item 2" labelBefore />
       </div>
     </Container>
   </div>
