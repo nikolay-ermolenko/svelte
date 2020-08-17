@@ -9,19 +9,29 @@
   export let disabled = false;
   export let labelBefore = false;
   export let text = '';
+  export let value = null;
 
+  function handleRippleClick() {
+    this.value = !this.value;
+  }
 </script>
 
-<mat-checkbox class="sv-checkbox {labelBefore ? 'sv-checkbox-label-before' : ''}">
+<mat-checkbox class="sv-checkbox {labelBefore ? 'sv-checkbox-label-before' : ''} {value ? 'sv-checkbox-checked' : ''}">
   <label class="sv-checkbox-layout" for="checkbox-{id}">
     <div class="sv-checkbox-inner-container">
-      <input type="checkbox" id="checkbox-{id}" class="sv-checkbox-input" />
+      <input type="checkbox" id="checkbox-{id}" class="sv-checkbox-input" bind:checked={value}/>
       {#if !disabled && ripple}
         <div class="sv-checkbox-ripple">
-          <Ripple center />
+          <Ripple center on:click={handleRippleClick} />
         </div>
       {/if}
       <div class="sv-checkbox-frame" />
+      <div class="sv-checkbox-background">
+        <svg version="1.1" focusable="false" viewBox="0 0 24 24" xml:space="preserve" class="mat-checkbox-checkmark">
+          <path fill="none" stroke="white" d="M4.1,12.7 9,17.6 20.3,6.3" class="sv-checkbox-checkmark-path"></path>
+        </svg>
+        <div class="sv-checkbox-mixedmark"></div>
+      </div>
     </div>
     <span class="sv-checkbox-label">
       <slot>
@@ -102,7 +112,27 @@
   box-sizing: border-box;
   pointer-events: none;
 }
-
+.sv-checkbox-checked .sv-checkbox-frame {
+  border-color: var(--form-checkbox-background-color);
+}
+.sv-checkbox-checked .sv-checkbox-background, 
+.sv-checkbox-indeterminate .sv-checkbox-background {
+    background-color: var(--form-checkbox-background-color);
+}
+.sv-checkbox-background1 {
+    align-items: center;
+    display: inline-flex;
+    justify-content: center;
+    transition: background-color 90ms cubic-bezier(0, 0, 0.2, 0.1),opacity 90ms cubic-bezier(0, 0, 0.2, 0.1);
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: absolute;
+    border-radius: 2px;
+    box-sizing: border-box;
+    pointer-events: none;
+}
 /* class="mat-checkbox example-margin mat-accent ng-untouched ng-pristine ng-valid" id="mat-checkbox-7" */
 /* class="mat-checkbox-input cdk-visually-hidden" id="mat-checkbox-7-input" tabindex="0" aria-checked="false" */
 </style>
