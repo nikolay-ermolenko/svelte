@@ -1,15 +1,22 @@
 <script>
+  import { createEventDispatcher } from 'svelte';
+
+  const dispatch = createEventDispatcher();
+
   let rippleCounter = [];
   let lastTime = null;
   let bufferMs = 1000;
 
   export let center = false;
+  export let disabled = false;
 
   /**
    * 
    * @param {Event} e
    */
   function onRippleMouseDown(e) {
+    if (disabled) return;
+
     const { pageX, pageY, path, currentTarget } = e;
     let target = currentTarget;
 
@@ -32,6 +39,8 @@
     const bubbleDim = display.indexOf('inline') > -1
       ? Math.min(parseInt(width), parseInt(height)) * 3
       : Math.max(parseInt(width), parseInt(height));
+
+    dispatch('click');
 
     rippleCounter = rippleCounter.concat([{ 
       left: center
@@ -57,7 +66,11 @@
 <div class="sv-ripple" on:mousedown={onRippleMouseDown}>
   {#each rippleCounter as { color, left, top, bubbleDim }}
     <div class="sv-ripple sv-ripple-bubble" 
-         style="background-color:{color};left:{left}px;top:{top}px;width:{bubbleDim}px;height:{bubbleDim}px;">
+         style="background-color:{color};
+                left:{left}px;
+                top:{top}px;
+                width:{bubbleDim}px;
+                height:{bubbleDim}px;">
     </div>
   {/each}
 </div>
