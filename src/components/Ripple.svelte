@@ -3,11 +3,13 @@
   let lastTime = null;
   let bufferMs = 1000;
 
+  export let center = false;
+
   /**
    * 
    * @param {Event} e
    */
-  function onRippleMouseDown(e) {;
+  function onRippleMouseDown(e) {
     const { pageX, pageY, path, currentTarget } = e;
     let target = currentTarget;
 
@@ -15,20 +17,33 @@
       target = currentTarget.parentNode;
     }
 
-    const { top, left } = target.getBoundingClientRect();
-    const { color, width, height, display } = target.ownerDocument.defaultView.getComputedStyle(target.parentNode);
+    const { 
+      top, 
+      left, 
+      width:targetWidth, 
+      height:targetHeight 
+    } = target.getBoundingClientRect();
+    const { 
+      color, 
+      width, 
+      height, 
+      display 
+    } = target.ownerDocument.defaultView.getComputedStyle(target.parentNode);
     const bubbleDim = display.indexOf('inline') > -1
       ? Math.min(parseInt(width), parseInt(height)) * 3
       : Math.max(parseInt(width), parseInt(height));
-    
+
     rippleCounter = rippleCounter.concat([{ 
-      left: pageX - left - bubbleDim * .5, 
-      top: pageY - top - bubbleDim * .5, 
+      left: center
+        ? targetWidth *.5 - bubbleDim * .5
+        : pageX - left - bubbleDim * .5, 
+      top: center
+        ? targetHeight *.5 - bubbleDim * .5
+        : pageY - top - bubbleDim * .5, 
       color, 
       bubbleDim
     }]);
     lastTime = +new Date();
-
     setTimeout(() => {
       const date = +new Date();
 
