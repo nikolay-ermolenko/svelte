@@ -15,9 +15,9 @@
 
 </script>
 
-<button class="sv-button {!disabled && ripple ? 'sv-ripple-el' : ''}" {disabled} on:click|stopPropagation={handleClick}>
-  {#if !disabled && ripple}
-    <Ripple center="{rippleCenter}"/>
+<button class="sv-button {ripple ? 'sv-ripple-el' : ''}" {disabled} on:click|stopPropagation={handleClick}>
+  {#if ripple}
+    <Ripple disabled={disabled} center={rippleCenter} />
   {/if}
   <div class="sv-button-content">{text}</div>
 </button>
