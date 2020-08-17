@@ -24,7 +24,8 @@ html {
     --viewport-background-color: #f3f3f3;
     --container-background-color: #fefefe;
 
-    --header-background-color: #679;    
+    --header-background-color: #679;
+    --form-checkbox-background-color: #679; 
     --header-text-color: #eee;
 }
 
