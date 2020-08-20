@@ -19,7 +19,13 @@
   {#if ripple}
     <Ripple disabled={disabled} center={rippleCenter} />
   {/if}
-  <div class="sv-button-content">{text}</div>
+  <div class="sv-button-content">
+    <slot>
+      {#if text}
+        {text}
+      {/if}
+    </slot>
+  </div>
 </button>
 
 <style>
