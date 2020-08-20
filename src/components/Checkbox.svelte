@@ -11,7 +11,7 @@
   export let text = '';
 	export let group = null;
 	export let value = null;
-  export let checked;
+  export let checked = null;
   
   $: updateChekbox(group);
   $: updateGroup(checked);
@@ -93,6 +93,9 @@
 
 
 <style>
+.sv-checkbox {
+  display: inline-block;
+}
 .sv-checkbox:not(.disabled) {
   cursor: pointer;
 }
@@ -201,6 +204,9 @@
 }
 .disabled .sv-checkbox-background {
   background-color: #eee;
+}
+.disabled .sv-checkbox-label {
+  color: #999;
 }
 </style>
 
