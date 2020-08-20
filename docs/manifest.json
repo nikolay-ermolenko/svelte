@@ -1,0 +1,8 @@
+{
+    "name": "Svelte material test page",
+    "short_name": "Svelte test",
+    "lang": "ru-RU",
+    "start_url": "https://nikolay-ermolenko.github.io/svelte/index.html",
+    "display": "standalone",
+    "theme_color": "#667788"
+}
