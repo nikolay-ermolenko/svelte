@@ -3,34 +3,81 @@
   import Ripple from './Ripple.svelte';
 
   const dispatch = createEventDispatcher();
-  const id = +new Date() + `${Math.random()}`.replace('.','');
+  const id = `checkbox-${parseInt(Math.random()*Math.pow(10, 15))}`;
 
   export let ripple = true;
   export let disabled = false;
   export let labelBefore = false;
   export let text = '';
-  export let value = null;
+	export let group = null;
+	export let value = null;
+  export let checked;
+  
+  $: updateChekbox(group);
+  $: updateGroup(checked);
+  $: classLabelBefore = labelBefore ? 'sv-checkbox-label-before' : '';
+  $: classDisabled = disabled ? 'disabled' : '';
+  $: indeterminate = checked === undefined || checked === null;
 
-  function handleRippleClick() {
-    this.value = !this.value;
+  function classCheckedValue(checked) {
+    if (checked === undefined || checked === null) {
+      return 'sv-checkbox-indeterminate'
+    }
+
+    return checked
+      ? 'sv-checkbox-checked'
+      : '';
   }
+
+  function updateChekbox(group) {
+    if (group === null) return;
+
+    checked = group.includes(value);
+  }
+
+  function updateGroup(checked) {
+    if (group === null) return;
+
+    const index = group.indexOf(value);
+
+    if (checked) {
+      if (index < 0) {
+        group.push(value);
+        group = group;
+      }
+    } else {
+      if (index >= 0) {
+        group.splice(index, 1);
+        group = group;
+      }
+    }
+  }
+
 </script>
 
-<mat-checkbox class="sv-checkbox {labelBefore ? 'sv-checkbox-label-before' : ''} {value ? 'sv-checkbox-checked' : ''}">
-  <label class="sv-checkbox-layout" for="checkbox-{id}">
+<div class="sv-checkbox {classDisabled} {classLabelBefore} {classCheckedValue(checked)}">
+  <label class="sv-checkbox-layout" for={id}>
     <div class="sv-checkbox-inner-container">
-      <input type="checkbox" id="checkbox-{id}" class="sv-checkbox-input" bind:checked={value}/>
+      <input id={id}
+            type="checkbox" 
+            {disabled}
+            bind:checked={checked}
+            bind:value={value}
+            class="sv-checkbox-input" />
       {#if !disabled && ripple}
         <div class="sv-checkbox-ripple">
-          <Ripple center on:click={handleRippleClick} />
+          <Ripple center />
         </div>
       {/if}
       <div class="sv-checkbox-frame" />
       <div class="sv-checkbox-background">
+        {#if indeterminate}
+          <div class="sv-checkbox-mixedmark" />
+        {:else}
         <svg version="1.1" focusable="false" viewBox="0 0 24 24" xml:space="preserve" class="mat-checkbox-checkmark">
           <path fill="none" stroke="white" d="M4.1,12.7 9,17.6 20.3,6.3" class="sv-checkbox-checkmark-path"></path>
         </svg>
-        <div class="sv-checkbox-mixedmark"></div>
+      {/if}
       </div>
     </div>
     <span class="sv-checkbox-label">
@@ -41,10 +88,12 @@
       </slot>
     </span>
   </label>
-</mat-checkbox>
+</div>
+
+
 
 <style>
-.sv-checkbox {
+.sv-checkbox:not(.disabled) {
   cursor: pointer;
 }
 .sv-checkbox-ripple {
@@ -102,7 +151,7 @@
   transition: border-color 90ms cubic-bezier(0, 0, 0.2, 0.1);
   border-width: .1rem;
   border-style: solid;
-  border-color: rgba(0,0,0,.54);
+  border-color: var(--form-checkbox-background-color);
   top: 0;
   left: 0;
   right: 0;
@@ -117,22 +166,41 @@
 }
 .sv-checkbox-checked .sv-checkbox-background, 
 .sv-checkbox-indeterminate .sv-checkbox-background {
-    background-color: var(--form-checkbox-background-color);
+  width: 100%;
+  height: 100%;
+  background-color: var(--form-checkbox-background-color);
 }
-.sv-checkbox-background1 {
-    align-items: center;
-    display: inline-flex;
-    justify-content: center;
-    transition: background-color 90ms cubic-bezier(0, 0, 0.2, 0.1),opacity 90ms cubic-bezier(0, 0, 0.2, 0.1);
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: absolute;
+.sv-checkbox-indeterminate .sv-checkbox-mixedmark {
+    opacity: 1;
+    transform: scaleX(1) rotate(0deg);
+}
+.sv-checkbox-checked .sv-checkbox-mixedmark {
+    transform: scaleX(1) rotate(-45deg);
+}
+.sv-checkbox-mixedmark {
+    width: calc(100% - 6px);
+    height: 2px;
+    opacity: 0;
+    transform: scaleX(0) rotate(0deg);
     border-radius: 2px;
-    box-sizing: border-box;
-    pointer-events: none;
+    background-color: #FFF;
 }
-/* class="mat-checkbox example-margin mat-accent ng-untouched ng-pristine ng-valid" id="mat-checkbox-7" */
-/* class="mat-checkbox-input cdk-visually-hidden" id="mat-checkbox-7-input" tabindex="0" aria-checked="false" */
+.sv-checkbox-background {
+  border-radius: .15rem;
+  align-items: center;
+  display: inline-flex;
+  justify-content: center;
+  transition: background-color 90ms cubic-bezier(0, 0, 0.2, 0.1),opacity 90ms cubic-bezier(0, 0, 0.2, 0.1);
+}
+.sv-checkbox-background svg {
+  flex: 1;
+}
+.disabled .sv-checkbox-frame {
+  border-color: #eee;
+
+}
+.disabled .sv-checkbox-background {
+  background-color: #eee;
+}
 </style>
+
