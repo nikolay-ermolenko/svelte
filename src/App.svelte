@@ -47,12 +47,15 @@
         <Button on:click={()=>checkNull=null} >Set null</Button>
         <Checkbox bind:checked={btnDisabled}>Item 1</Checkbox>
         <p class="version">Check null value:</p>
+         <pre>{JSON.stringify(checkNull)}</pre>
         <Checkbox bind:checked={checkNull} disabled={btnDisabled}>Null value</Checkbox>
         <p class="version">Check group:</p>
         <pre>{JSON.stringify(checkOptions)}</pre>
         <pre>{JSON.stringify(checkResult)}</pre>
         {#each checkOptions as {id, name}}
-          <Checkbox bind:group={checkResult} value={id} labelBefore>{name}</Checkbox>
+          <div style="padding: .5rem 0;">
+            <Checkbox bind:group={checkResult} value={id} labelBefore>{name}</Checkbox>
+          </div>
         {/each}
     </Container>
   </div>
