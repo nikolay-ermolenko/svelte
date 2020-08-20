@@ -63,9 +63,10 @@
   }
 </script>
 
-<div class="sv-ripple" on:mousedown={onRippleMouseDown}>
+<div class="sv-ripple" 
+     on:mousedown={onRippleMouseDown}>
   {#each rippleCounter as { color, left, top, bubbleDim }}
-    <div class="sv-ripple sv-ripple-bubble" 
+    <div class="sv-ripple sv-ripple-bubble"
          style="background-color:{color};
                 left:{left}px;
                 top:{top}px;
