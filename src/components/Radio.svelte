@@ -44,6 +44,7 @@
 <style>
 .sv-radio {
   display: inline-block;
+  margin: .6rem .1rem;
 }
 .sv-radio:not(.disabled) {
   cursor: pointer;

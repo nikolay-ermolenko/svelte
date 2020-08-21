@@ -32,3 +32,6 @@ html {
 .sv-ripple-el {
     position: relative;
 }
+pre {
+    white-space: normal;
+}

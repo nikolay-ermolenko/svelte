@@ -95,6 +95,7 @@
 <style>
 .sv-checkbox {
   display: inline-block;
+  margin: .6rem .1rem;
 }
 .sv-checkbox:not(.disabled) {
   cursor: pointer;

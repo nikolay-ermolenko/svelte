@@ -129,4 +129,14 @@ h1 {
   max-height: 800px;
   margin: auto;
 }
+
+@media (max-width: 700px) {
+  .aaaa {
+    margin: inherit;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+  }
+}
 </style>
