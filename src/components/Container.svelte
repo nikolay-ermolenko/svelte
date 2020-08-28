@@ -14,7 +14,8 @@
       <Header>{header}</Header>
     {/if}
   </slot>
-  <div class="sv-container-body {ripple ? 'sv-ripple-el' : ''}">
+  <div class="sv-container-body"
+       class:sv-ripple-el={!ripple}>
     {#if ripple}
       <Ripple />
     {/if}
@@ -25,10 +26,13 @@
 <style>
 
 .sv-container {
+  transition: var(--transition-delay);
   width: 100%;
   height: 100%;
-  box-shadow: 0 0px 7px 0px var(--shadow-color), 0 14px 32px -18px var(--shadow-color);
-  background-color: var(--container-background-color);
+  flex: 1;
+  box-shadow: 0 0 .9rem -0.4rem var(--shadow-color), 0 .87rem 2rem -1.4rem var(--shadow-color);
+  background-color: var(--container-color);
+  color: var(--container-text-color);
   display: flex;
   flex-direction: column;
 }
