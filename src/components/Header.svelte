@@ -4,7 +4,8 @@
   export let ripple = false;
 </script>
 
-<div class="sv-header {ripple ? 'sv-ripple-el' : ''}">
+<div class="sv-header"
+     class:sv-ripple-el={ripple}>
   {#if ripple}
     <Ripple />
   {/if}
@@ -13,9 +14,10 @@
 
 <style>
 .sv-header {
-  background-color: var(--header-background-color);
+  transition: var(--transition-delay);
+  background-color: var(--header-color);
   color: var(--header-text-color);
-  padding: .8rem;
+  padding: .4rem;
   font-size: 1.5rem;
   overflow: hidden;
   text-overflow: ellipsis;
