@@ -1,37 +1,85 @@
 html {
-    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue",
+    sans-serif;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 body {
-    width: 100%;
-    height: 100%;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    overflow: hidden;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  overflow: hidden;
 }
 
-
-html {
-    --button-regular-background-color: #fefefe;
-    --text-regular-color: #444;
-    --shadow-color: rgba(0,0,0,.3);    
-    --shadow-color: rgba(0,0,0,.3);
-    --viewport-background-color: #f3f3f3;
-    --container-background-color: #fefefe;
-
-    --header-background-color: #679;
-    --form-checkbox-background-color: #679; 
-    --header-text-color: #eee;
+:root {
+  --transition-delay: 100ms;
+  --base-color: #eeeeee;
+  --base-text-color: #444444;
+  --base-dark-color: #cccccc;
+  --base-dark-text-color: #222222;
+  --shadow-color: rgba(0,0,0,.4);
+  /* https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=546E7A&secondary.color=f47b00&secondary.text.color=212121 */
+  --primary-color: #546e7a;
+  --primary-light-color: #819ca9;
+  --primary-dark-color: #29434e;
+  --secondary-color: #f47b00;
+  --secondary-light-color: #ffac42;
+  --secondary-dark-color: #ba4c00;
+  --primary-text-color: #ffffff;
+  --secondary-text-color: #212121;
+  font-size: 16px;
 }
 
-.sv-ripple-el {
-    position: relative;
+.sv-viewport {
+  --viewport-color: var(--base-color);
+  --viewport-text-color: var(--base-text-color);
 }
-pre {
-    white-space: normal;
+
+.sv-container {
+  --shadow-color: rgba(0,0,0,.2);
+  --container-color: var(--base-dark-color);
+  --container-text-color: var(--base-dark-text-color);
+  --checkbox-color: var(--base-dark-color);
+  --checkbox-text-color: var(--base-dark-text-color);
+  --button-color: var(--base-dark-color);
+  --button-text-color: var(--primary-dark-color);
+}
+.sv-container .raised{
+  --button-color: var(--primary-color);
+  --button-text-color: var(--base-color);
+}
+.sv-container .raised.secondary{
+  --button-color: var(--secondary-color);
+  --button-text-color: var(--secondary-text-color);
+}
+.sv-container .secondary{
+  --button-color: var(--primary-dark-color);
+  --button-text-color: var(--secondary-color);
+}
+
+.sv-header {
+  --shadow-color: rgba(0,0,0,.4);
+  --header-color: var(--primary-color);
+  --header-text-color: var(--primary-text-color);
+  --checkbox-color: var(--primary-color);
+  --checkbox-text-color: var(--primary-text-color);
+  --button-color: var(--base-dark-color);
+  --button-text-color: var(--primary-light-color);
+}
+.sv-header .raised{
+  --button-color: var(--primary-dark-color);
+  --button-text-color: var(--base-color);
+}
+.sv-header .raised.secondary{
+  --button-color: var(--secondary-dark-color);
+  --button-text-color: var(--base-color);
+}
+.sv-header .secondary{
+  --button-color: var(--primary-dark-color);
+  --button-text-color: var(--secondary-dark-color);
 }

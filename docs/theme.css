@@ -1,0 +1,16 @@
+.theme-dark {
+  --base-color: #444444;
+  --base-text-color: #eeeeee;
+  --base-dark-color: #333333;
+  --base-dark-text-color: #cccccc;
+  --shadow-color: rgba(0,0,0,.6);
+
+  --primary-color: #304f5e;
+  --primary-light-color: #819ca9;
+  --primary-dark-color: #29434e;
+  --secondary-color: #f47b00;
+  --secondary-light-color: #ffac42;
+  --secondary-dark-color: #ba4c00;
+  --primary-text-color: #779cae;
+  --secondary-text-color: #212121;
+}
