@@ -17,7 +17,7 @@ body {
 }
 
 :root {
-  --transition-delay: 100ms;
+  --transition-delay: 280ms;
   --base-color: #eeeeee;
   --base-text-color: #444444;
   --base-dark-color: #cccccc;
