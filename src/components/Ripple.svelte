@@ -35,7 +35,7 @@
       width, 
       height, 
       display 
-    } = target.ownerDocument.defaultView.getComputedStyle(target.parentNode);
+    } = getComputedStyle(target.parentNode);
     const bubbleDim = display.indexOf('inline') > -1
       ? Math.min(parseInt(width), parseInt(height)) * 3
       : Math.max(parseInt(width), parseInt(height));
