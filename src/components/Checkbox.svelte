@@ -16,7 +16,6 @@
   $: updateChekbox(group);
   $: updateGroup(checked);
   $: classLabelBefore = labelBefore ? 'sv-checkbox-label-before' : '';
-  $: classDisabled = disabled ? 'disabled' : '';
   $: indeterminate = checked === undefined || checked === null;
 
   function classCheckedValue(checked) {
@@ -55,7 +54,9 @@
 
 </script>
 
-<div class="sv-checkbox {classDisabled} {classLabelBefore} {classCheckedValue(checked)}">
+<div class="sv-checkbox {classCheckedValue(checked)}"
+     class:disabled={disabled}
+     class:sv-checkbox-label-before={labelBefore}>
   <label class="sv-checkbox-layout" for={id}>
     <div class="sv-checkbox-inner-container">
       <input id={id}
@@ -74,8 +75,13 @@
         {#if indeterminate}
           <div class="sv-checkbox-mixedmark" />
         {:else}
-        <svg version="1.1" focusable="false" viewBox="0 0 24 24" xml:space="preserve" class="mat-checkbox-checkmark">
-          <path fill="none" stroke="white" d="M4.1,12.7 9,17.6 20.3,6.3" class="sv-checkbox-checkmark-path"></path>
+        <svg version="1.1" 
+             focusable="false" 
+             viewBox="0 0 24 24" 
+             xml:space="preserve">
+          <path fill="none" 
+                d="M4.1,12.7 9,17.6 20.3,6.3" 
+                class="sv-checkbox-checkmark-path"></path>
         </svg>
       {/if}
       </div>
@@ -93,14 +99,20 @@
 
 
 <style>
+.sv-checkbox,
+.sv-checkbox-frame,
+.sv-checkbox-background {
+  transition: var(--transition-delay);
+}
 .sv-checkbox {
   display: inline-block;
   margin: .6rem .1rem;
+  line-height: 1.3em;
 }
-.sv-checkbox:not(.disabled) {
+ .sv-checkbox:not(.disabled) * {
   cursor: pointer;
 }
-.sv-checkbox-ripple {
+ .sv-checkbox-ripple {
   position: absolute;
   top: -.7rem;
   left: -.7rem;
@@ -131,11 +143,12 @@
   vertical-align: middle;
   display: inline-flex;
   white-space: nowrap;
+  font-size: 1rem;
 }
 .sv-checkbox-label-before .sv-checkbox-inner-container {
-    order: 1;
-    margin-left: .5rem;
-    margin-right: auto;
+  order: 1;
+  margin-left: .5rem;
+  margin-right: auto;
 }
 .sv-checkbox-input {
   border: 0;
@@ -152,62 +165,59 @@
 }
 .sv-checkbox-frame {
   background-color: transparent;
-  transition: border-color 90ms cubic-bezier(0, 0, 0.2, 0.1);
   border-width: .1rem;
   border-style: solid;
-  border-color: var(--form-checkbox-background-color);
+  border-color: var(--checkbox-text-color);
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
   position: absolute;
-  border-radius: .15rem;
+  border-radius: .1rem;
   box-sizing: border-box;
   pointer-events: none;
 }
 .sv-checkbox-checked .sv-checkbox-frame {
-  border-color: var(--form-checkbox-background-color);
+  border-color: var(--checkbox-text-color);
 }
 .sv-checkbox-checked .sv-checkbox-background, 
 .sv-checkbox-indeterminate .sv-checkbox-background {
   width: 100%;
   height: 100%;
-  background-color: var(--form-checkbox-background-color);
+  background-color: var(--checkbox-text-color);
 }
 .sv-checkbox-indeterminate .sv-checkbox-mixedmark {
-    opacity: 1;
-    transform: scaleX(1) rotate(0deg);
+  opacity: 1;
+  transform: scaleX(1) rotate(0deg);
 }
 .sv-checkbox-checked .sv-checkbox-mixedmark {
-    transform: scaleX(1) rotate(-45deg);
+  transform: scaleX(1) rotate(-45deg);
 }
 .sv-checkbox-mixedmark {
-    width: calc(100% - 6px);
-    height: 2px;
-    opacity: 0;
-    transform: scaleX(0) rotate(0deg);
-    border-radius: 2px;
-    background-color: #FFF;
+  width: calc(100% - .5rem);
+  height: .1rem;
+  opacity: 0;
+  transform: scaleX(0) rotate(0deg);
+  border-radius: 2px;
+  background-color: var(--checkbox-color);
 }
 .sv-checkbox-background {
   border-radius: .15rem;
   align-items: center;
   display: inline-flex;
   justify-content: center;
-  transition: background-color 90ms cubic-bezier(0, 0, 0.2, 0.1),opacity 90ms cubic-bezier(0, 0, 0.2, 0.1);
+  width: 100%;
+  height:100%;
+  /* transition: background-color 90ms cubic-bezier(0, 0, 0.2, 0.1),opacity 90ms cubic-bezier(0, 0, 0.2, 0.1); */
 }
 .sv-checkbox-background svg {
   flex: 1;
 }
-.disabled .sv-checkbox-frame {
-  border-color: #eee;
-
+.disabled {
+  opacity: .3;
 }
-.disabled .sv-checkbox-background {
-  background-color: #eee;
-}
-.disabled .sv-checkbox-label {
-  color: #999;
+.sv-checkbox .sv-checkbox-checkmark-path {
+  stroke: var(--checkbox-color);
+  stroke-width: 2px;
 }
 </style>
-
