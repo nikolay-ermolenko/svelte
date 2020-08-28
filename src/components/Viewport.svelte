@@ -1,15 +1,21 @@
-<div class="sv-viewport">
-    <slot />
-</div>
+<script>
+  export let darkMode = false;
+</script>
 
+<div class="sv-viewport"
+     class:theme-dark={darkMode}>
+  <slot />
+</div>
 
 <style>
 .sv-viewport {
-    background-color: var(--viewport-background-color);
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
+  transition: var(--transition-delay);
+  background-color: var(--viewport-color);
+  color: var(--viewport-text-color);
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
 </style>
