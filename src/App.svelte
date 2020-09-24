@@ -58,7 +58,7 @@
   <Container header="Hello header">
     <div slot="header">
       <Header>
-        <span>{svelteVersion}</span>
+        <span>{svelteVersion} &</span>
          <Button text="btn" raised
                 {disabled} />
         <Checkbox bind:checked={darkMode}
